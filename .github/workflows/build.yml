@@ -26,7 +26,7 @@ jobs:
       # パッケージのインストールとアプリのビルド
       - name: install and build
         run: |
-          yarn install --frozen-lockfile
+          yarn install
           yarn build
         env:
           CI: true
