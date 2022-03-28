@@ -1,3 +1,6 @@
+import { Button, TextField } from "@material-ui/core";
+import React from "react";
+
 type InputFormProps = {
   item: string;
   onNameChange: (content: string) => void;
@@ -14,9 +17,16 @@ const InputForm = (props: InputFormProps) => {
   };
 
   return (
-    <div>
-      <input type="text" onChange={handleOnChange} />
-      <button onClick={handleOnAdd}>add</button>
+    <div style={{display: "flex"}}>
+      <TextField
+        type="text"
+        variant="standard"
+        fullWidth
+        onChange={handleOnChange}
+      />
+      <Button onClick={handleOnAdd} variant="text">
+        add
+      </Button>
     </div>
   );
 };

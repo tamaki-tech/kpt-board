@@ -1,8 +1,10 @@
+import { Typography } from "@material-ui/core";
 import { useState } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { ItemType } from "../ItemType";
 import InputForm from "./InputForm";
 import List from "./List";
+import "./Board.css"
 
 type BoardProps = {
   label: string;
@@ -56,23 +58,27 @@ const Board = (props: BoardProps) => {
   };
 
   return (
-    <div>
-      <h2>{props.label}</h2>
+    <div className="frame">
+      <Typography variant="h5" component="div">
+        {props.label}
+      </Typography>
       <InputForm
         item={itemState}
         onNameChange={(content) => handleOnChange(content)}
         onAdd={() => handleOnAdd()}
       />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="list">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              <List items={state.items}></List>
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <div className="box">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="list">
+            {(provided) => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                <List items={state.items}></List>
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     </div>
   );
 };
